@@ -10,6 +10,13 @@ pipeline {
             }
        } 
        
-    } 
+    }  
+   
+       stage ('MVN clean') {
+         steps {
+            sh 'mvn clean -e'
+            echo 'Build stage done'
+        }
+     }
    
 }
