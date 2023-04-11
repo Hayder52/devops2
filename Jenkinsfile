@@ -16,19 +16,19 @@ pipeline {
             }
        } 
        
-  //     stage ('MVN clean') {
-  //       steps {
- //           sh 'mvn clean -e'
-   //         echo 'Build stage done'
- //       }
-//     }
+       stage ('MVN clean') {
+         steps {
+            sh 'mvn clean -e'
+            echo 'Build stage done'
+        }
+     }
    
-      stage("compile Project"){
-          steps {
-                sh 'mvn compile -X -e'
-                echo 'compile stage done'
-          }
-      }
+//      stage("compile Project"){
+//          steps {
+//                sh 'mvn compile -X -e'
+//                echo 'compile stage done'
+//          }
+//      }
 //        stage("unit tests"){
 //            steps {
  //                 sh 'mvn test'
