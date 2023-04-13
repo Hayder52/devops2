@@ -87,8 +87,10 @@ pipeline {
 //       } 
         
   
-    stage("Upload Jar  To Nexus") {
-           steps {  
+    
+ 
+            stage("Upload Jar  To Nexus") {
+            steps {  
                nexusArtifactUploader artifacts: [ 
                  [ 
                     artifactId: 'examenScrum',  
@@ -103,16 +105,13 @@ pipeline {
             nexusUrl: '192.168.43.59:8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
-            repository: 'http://192.168.43.59:8081/repository/deploymentRepo',  
+            repository: 'deploymentRepo',  
             version: '1.0' 
 
 
         }  
 
      } 
-
- 
-          
        
   }
 }
