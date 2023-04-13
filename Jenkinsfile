@@ -100,10 +100,10 @@ pipeline {
             ],  
             credentialsId: 'nexus3', 
             groupId: 'tn.esprit', 
-            nexusUrl: '192.168.43.59 :8081', 
+            nexusUrl: '192.168.43.59:8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
-            repository: 'deploymentRepo',  
+            repository: 'http://192.168.43.59:8081/repository/deploymentRepo',  
             version: '1.0' 
 
 
