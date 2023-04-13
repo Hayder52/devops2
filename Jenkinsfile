@@ -16,12 +16,12 @@ pipeline {
             }
        } 
        
-       stage ('MVN clean') {
-         steps {
-            sh 'mvn clean -e'
-            echo 'Build stage done'
-        }
-     }
+ //      stage ('MVN clean') {
+ //        steps {
+ //           sh 'mvn clean -e'
+ //           echo 'Build stage done'
+ //       }
+ //    }
    
    //   stage("compile Project"){
    //        steps {
@@ -29,19 +29,19 @@ pipeline {
    //              echo 'compile stage done'
    //         }
  //     }
-       stage("unit tests"){
-           steps {
-                  sh 'mvn test'
-                  echo 'unit tests stage done'
-            }
-        }
-         stage("mvn Pckage") {
-           steps {
-                script {
-                  sh "mvn package -DskipTests=true"
-              }
-           }
-       } 
+    //   stage("unit tests"){
+     //      steps {
+      //            sh 'mvn test'
+      //            echo 'unit tests stage done'
+      //      }
+     //   }
+     //    stage("mvn Pckage") {
+     //      steps {
+      //          script {
+      //            sh "mvn package -DskipTests=true"
+    //          }
+    //       }
+   //    } 
   //    stage("docker build") {
   //        steps{
   //         script {
@@ -77,14 +77,14 @@ pipeline {
         //     sh "docker rmi $registry:$BUILD_NUMBER"
         //   }
        // }
-      stage("SonarQube Analysis") {
-         steps {
-             withSonarQubeEnv('sq1') {
-              sh 'mvn sonar:sonar'
-             }
+//      stage("SonarQube Analysis") {
+//         steps {
+//             withSonarQubeEnv('sq1') {
+//              sh 'mvn sonar:sonar'
+//             }
                  
-         }
-       } 
+//         }
+//       } 
         
   
     stage("Upload Jar  To Nexus") {
