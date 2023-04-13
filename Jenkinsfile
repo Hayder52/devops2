@@ -42,13 +42,13 @@ pipeline {
     //          }
     //       }
    //    } 
-  //    stage("docker build") {
-  //        steps{
-  //         script {
-  //             dockerImage = docker.build registry + ":$BUILD_NUMBER"
-  //            }
-  //         }
-  //       }  
+     stage("docker build") {
+          steps{
+           script {
+               dockerImage = docker.build registry + ":$BUILD_NUMBER"
+              }
+           }
+         }  
 //          stage("DockerHub login ") {
 //              steps{
 //                  sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u esprituser -p P@ssw0rd@imc'
@@ -89,29 +89,29 @@ pipeline {
   
     
  
-            stage("Upload Jar  To Nexus") {
-            steps {  
-               nexusArtifactUploader artifacts: [ 
-                 [ 
-                    artifactId: 'examenScrum',  
-                      classifier: '',  
-                      file: 'target/examenScrum-1.0.jar',   
-                      type: 'jar' 
-                   ]  
+ //           stage("Upload Jar  To Nexus") {
+ //           steps {  
+ //              nexusArtifactUploader artifacts: [ 
+ //                [ 
+ //                   artifactId: 'examenScrum',  
+ //                     classifier: '',  
+ //                     file: 'target/examenScrum-1.0.jar',   
+ //                     type: 'jar' 
+ //                  ]  
 
-            ],  
-            credentialsId: 'nexus3', 
-            groupId: 'tn.esprit', 
-            nexusUrl: '192.168.43.59:8081', 
-            nexusVersion: 'nexus3', 
-            protocol: 'http', 
-            repository: 'deploymentRepo',  
-            version: '1.0' 
+ //           ],  
+ //           credentialsId: 'nexus3', 
+ //           groupId: 'tn.esprit', 
+  //          nexusUrl: '192.168.43.59:8081', 
+  //          nexusVersion: 'nexus3', 
+  //          protocol: 'http', 
+  //          repository: 'deploymentRepo',  
+  //          version: '1.0' 
 
 
-        }  
+  //      }  
 
-     } 
+  //   } 
        
   }
 }
