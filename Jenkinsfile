@@ -100,7 +100,7 @@ pipeline {
  //           ],  
  //           credentialsId: 'nexus3', 
  //           groupId: 'tn.esprit', 
-//            nexusUrl: '172.20.10.5:8081', 
+//            nexusUrl: '192.168.43.59 :8081', 
 //            nexusVersion: 'nexus3', 
 //            protocol: 'http', 
 //            repository: 'deploymentRepo',  
