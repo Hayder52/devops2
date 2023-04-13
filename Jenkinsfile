@@ -103,7 +103,7 @@ pipeline {
             nexusUrl: '192.168.43.59 :8081', 
             nexusVersion: 'nexus3', 
             protocol: 'http', 
-            repository: 'maven-releases',  
+            repository: 'deploymentRepo',  
             version: '1.0' 
 
 
