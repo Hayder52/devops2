@@ -15,7 +15,14 @@
 	<properties>
 		<java.version>1.8</java.version> 
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-	</properties>
+	</properties> 
+       <distributionManagement> 
+               <repository> 
+                    <id>deploymentRepo</id> 
+                    <url>http://192.168.43.59:8081/repository/deploymentRepo//</url> 
+              </repository>  
+   
+       </distributionManagement>  
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
