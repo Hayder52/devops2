@@ -1,10 +1,10 @@
 pipeline { 
-    environment{
+ //   environment{
     //   registry="esprituser/tpachatprojctbackend"
   //     registryCredential='esprituser-dockerhub'
  //      dokerImage="tpachatprojctbackend" 
-       PATH = "$PATH:/usr/local/bin"
- } 
+ //      PATH = "$PATH:/usr/local/bin"
+ //} 
     
     agent any
     stages {  
@@ -16,39 +16,39 @@ pipeline {
             }
        } 
        
- //      stage ('MVN clean') {
- //        steps {
- //           sh 'mvn clean -e'
- //           echo 'Build stage done'
- //       }
- //    }
+       stage ('MVN clean') {
+         steps {
+            sh 'mvn clean -e'
+            echo 'Build stage done'
+        }
+     }
    
-   //   stage("compile Project"){
-   //        steps {
-   //             sh 'mvn compile -X -e'
-   //              echo 'compile stage done'
-   //         }
- //     }
-    //   stage("unit tests"){
-     //      steps {
-      //            sh 'mvn test'
-      //            echo 'unit tests stage done'
-      //      }
-     //   }
-     //    stage("mvn Pckage") {
-     //      steps {
-      //          script {
-      //            sh "mvn package -DskipTests=true"
-    //          }
-    //       }
-   //    } 
-     stage("docker build") {
-          steps{
-           script {
-               dockerImage = docker.build registry + ":$BUILD_NUMBER"
+      stage("compile Project"){
+           steps {
+                sh 'mvn compile -X -e'
+                 echo 'compile stage done'
+            }
+      }
+       stage("unit tests"){
+           steps {
+                  sh 'mvn test'
+                  echo 'unit tests stage done'
+            }
+       }
+         stage("mvn Pckage") {
+           steps {
+                script {
+                  sh "mvn package -DskipTests=true"
               }
            }
-         }  
+       } 
+ //    stage("docker build") {
+ //         steps{
+   //        script {
+//               dockerImage = docker.build registry + ":$BUILD_NUMBER"
+  //            }
+    //       }
+     //    }  
 //          stage("DockerHub login ") {
 //              steps{
 //                  sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u esprituser -p P@ssw0rd@imc'
@@ -72,46 +72,46 @@ pipeline {
               
 //             }  
 //        }
-         //   stage('Cleaning up') {
-        //     steps{
-        //     sh "docker rmi $registry:$BUILD_NUMBER"
-        //   }
-       // }
-//      stage("SonarQube Analysis") {
-//         steps {
-//             withSonarQubeEnv('sq1') {
-//              sh 'mvn sonar:sonar'
-//             }
+            stage('Cleaning up') {
+             steps{
+             sh "docker rmi $registry:$BUILD_NUMBER"
+           }
+        }
+      stage("SonarQube Analysis") {
+         steps {
+             withSonarQubeEnv('sq1') {
+              sh 'mvn sonar:sonar'
+             }
                  
-//         }
-//       } 
+       }
+       } 
         
   
     
  
- //           stage("Upload Jar  To Nexus") {
- //           steps {  
- //              nexusArtifactUploader artifacts: [ 
- //                [ 
- //                   artifactId: 'examenScrum',  
- //                     classifier: '',  
- //                     file: 'target/examenScrum-1.0.jar',   
- //                     type: 'jar' 
- //                  ]  
+            stage("Upload Jar  To Nexus") {
+            steps {  
+               nexusArtifactUploader artifacts: [ 
+                 [ 
+                    artifactId: 'examenScrum',  
+                      classifier: '',  
+                      file: 'target/examenScrum-1.0.jar',   
+                      type: 'jar' 
+                   ]  
 
- //           ],  
- //           credentialsId: 'nexus3', 
- //           groupId: 'tn.esprit', 
-  //          nexusUrl: '192.168.43.59:8081', 
-  //          nexusVersion: 'nexus3', 
-  //          protocol: 'http', 
-  //          repository: 'deploymentRepo',  
-  //          version: '1.0' 
+            ],  
+            credentialsId: 'nexus3', 
+            groupId: 'tn.esprit', 
+            nexusUrl: '192.168.43.59:8081', 
+            nexusVersion: 'nexus3', 
+            protocol: 'http', 
+           repository: 'deploymentRepo',  
+            version: '1.0' 
 
 
-  //      }  
+        }  
 
-  //   } 
+     } 
        
   }
 }
