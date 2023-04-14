@@ -64,54 +64,54 @@ pipeline {
 //       }
 //      }   
             
-        stage('Docker-compose file') {
+ //       stage('Docker-compose file') {
 
-             steps {
-                  sh 'docker-compose up -d';
-                   sh 'sleep 300'
+//             steps {
+//                 sh 'docker-compose up -d';
+ //                  sh 'sleep 300'
               
-           }  
-       }
+  //         }  
+//       }
 //            stage('Cleaning up') {
 //             steps{
 //             sh "docker rmi $registry:$BUILD_NUMBER"
 //           }
 //        }
- //     stage("SonarQube Analysis") {
- //        steps {
-  //           withSonarQubeEnv('sq1') {
- //             sh 'mvn sonar:sonar'
- //            }
+      stage("SonarQube Analysis") {
+         steps {
+            withSonarQubeEnv('sq1') {
+              sh 'mvn sonar:sonar'
+             }
                  
-  //     }
-  //     } 
+       }
+       } 
         
   
     
  
-     //       stage("Upload Jar  To Nexus") {
- //           steps {  
-   //            nexusArtifactUploader artifacts: [ 
-       //          [ 
-        //            artifactId: 'examenScrum',  
-        //              classifier: '',  
-        //              file: 'target/examenScrum-1.0.jar',   
-         //             type: 'jar' 
-        //           ]  
+            stage("Upload Jar  To Nexus") {
+            steps {  
+               nexusArtifactUploader artifacts: [ 
+                 [ 
+                    artifactId: 'examenScrum',  
+                      classifier: '',  
+                      file: 'target/examenScrum-1.0.jar',   
+                      type: 'jar' 
+                   ]  
 
-      //      ],  
-      //      credentialsId: 'nexus3', 
-     //       groupId: 'tn.esprit', 
-     //       nexusUrl: '192.168.43.59:8081', 
-    //        nexusVersion: 'nexus3', 
-    //        protocol: 'http', 
-     //      repository: 'deploymentRepo',  
-      //      version: '1.0' 
+            ],  
+            credentialsId: 'nexus3', 
+            groupId: 'tn.esprit', 
+            nexusUrl: '192.168.43.59:8081', 
+            nexusVersion: 'nexus3', 
+            protocol: 'http', 
+           repository: 'deploymentRepo',  
+            version: '1.0' 
 
 
-    //    }  
+        }  
 
- //    } 
+     } 
        
   }
 }
